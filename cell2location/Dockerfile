@@ -16,7 +16,7 @@ RUN micromamba install -y -n base -f /tmp/env.yaml && \
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
 RUN pip uninstall -y jax jaxlib && \
-    micromamba install -y -c conda-forge jaxlib jax numpy=2.1 && \
+    micromamba install -y -c conda-forge jaxlib jax numpy=2.1 squidpy && \
     micromamba clean --all --yes && \
     rm /tmp/env.yaml
 

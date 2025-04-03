@@ -4,7 +4,6 @@ options(repos = "https://CRAN.R-project.org")
 # message("Installing 'pak'...")
 # install.packages("pak")
 
-# 2). Install 'scrnaseq-cellcomm'
 message("Installing 'GaitiLabUtils'...")
 pak::pkg_install("GaitiLab/GaitiLabUtils")
 
