@@ -1,0 +1,44 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- conda-forge::r-base=4.3.1
+- conda-forge::r-essentials
+
+- bioconda::bioconductor-bsgenome.hsapiens.ucsc.hg38=1.4.5
+- bioconda::bioconductor-complexheatmap=2.18.0
+- bioconda::bioconductor-mutationalpatterns=3.12.0
+- bioconda::bioconductor-ccfindr=1.22.0
+
+- conda-forge::r-biocmanager=1.30.25
+- conda-forge::r-devtools=2.4.5
+- conda-forge::r-argparse=2.2.5
+- conda-forge::r-here=1.0.1
+- conda-forge::r-log4r=0.4.4
+- conda-forge::r-stringr=1.5.1
+- conda-forge::r-Matrix=1.6.1.1
+- conda-forge::r-varhandle=2.0.6
+- conda-forge::r-pacman=0.5.1
+- conda-forge::r-gridextra=2.3
+- conda-forge::r-nmf=0.21.0
+- conda-forge::r-patchwork
+
+# Packages needed by GaitiLabUtils
+- conda-forge::r-r.methodss3=1.8.2
+- conda-forge::r-rbibutils=2.3
+- conda-forge::r-rdpack=2.6.2
+- conda-forge::r-jpeg=0.1.10
+- conda-forge::r-rmarkdown=2.29
+- conda-forge::r-curl=6.0.1
+- conda-forge::r-r.oo=1.27.0
+- conda-forge::r-reformulas=0.4.0
+- conda-forge::r-nloptr=2.1.1
+- conda-forge::r-minqa=1.2.8
+- conda-forge::r-gridtext=0.1.5
+- conda-forge::r-r.utils=2.12.3
+- conda-forge::r-lme4=1.1_35
+- conda-forge::r-ggsignif=0.6.4
+- conda-forge::r-ggtext=0.1.2
+- conda-forge::r-ggthemes=5.1.0
+- conda-forge::r-tidyverse=2.0.0
+

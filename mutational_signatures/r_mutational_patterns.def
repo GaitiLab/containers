@@ -1,0 +1,24 @@
+BootStrap: docker
+From: mambaorg/micromamba:1.5.10-noble
+
+%files
+    mutational_patterns.yml /scratch/mutational_patterns.yml
+
+%post
+    # Install conda environment
+    micromamba install -y -n base -f /scratch/mutational_patterns.yml
+    micromamba install -y -n base conda-forge::procps-ng
+    micromamba env export --name base --explicit > environment.lock
+    echo ">> CONDA_LOCK_START"
+    cat environment.lock
+    echo "<< CONDA_LOCK_END"
+    micromamba clean -a -y
+
+    # Install R package from GitHub
+    echo "Installing R package from GitHub"
+    export PATH="$MAMBA_ROOT_PREFIX/bin:$PATH"
+    Rscript -e "remotes::install_github('jmw86069/colorjam@fe1658de43da284e2d40c3f049fe9334caec4f19')"
+    Rscript -e "remotes::install_github('GaitiLab/GaitiLabUtils@0ed0bd8c18d497d716cd3bcf7d1f6059b741d16c')"
+
+%environment
+    export PATH="$MAMBA_ROOT_PREFIX/bin:$PATH"
