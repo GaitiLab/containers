@@ -1,0 +1,24 @@
+BootStrap: docker
+From: mambaorg/micromamba:1.5.10-noble
+
+%files
+    sigprofiler.yml /scratch/sigprofiler.yml
+
+%post
+    # Install conda environment
+    micromamba install -y -n base -f /scratch/sigprofiler.yml
+    micromamba install -y -n base conda-forge::procps-ng
+    micromamba env export --name base --explicit > environment.lock
+    echo ">> CONDA_LOCK_START"
+    cat environment.lock
+    echo "<< CONDA_LOCK_END"
+    micromamba clean -a -y
+
+    export PATH="$MAMBA_ROOT_PREFIX/bin:$PATH"
+    # Run the following commands in python
+    # >> from SigProfilerMatrixGenerator import install as genInstall
+    # >> genInstall.install('GRCh38', bash=True)
+    # python -c "from SigProfilerMatrixGenerator import install as genInstall; genInstall.install('GRCh38', bash=True)"
+
+%environment
+    export PATH="$MAMBA_ROOT_PREFIX/bin:$PATH"
