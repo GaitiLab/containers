@@ -6,7 +6,7 @@ USER root
 
 # Update, install required packages, and clean up in one RUN statement
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libcairo2-dev libhdf5-dev libxml2-dev && \
+    apt-get install -y --no-install-recommends cmake libharfbuzz-dev libfribidi-dev libudunits2-dev libcairo2-dev libhdf5-dev libxml2-dev libfl-dev liblzma-dev zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
 
 USER $MAMBA_USER
