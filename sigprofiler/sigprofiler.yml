@@ -1,0 +1,7 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- bioconda::sigprofilerassignment
+- bioconda::sigprofilermatrixgenerator
+- bioconda::sigprofilerplotting
