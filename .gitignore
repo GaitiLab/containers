@@ -1,1 +1,4 @@
-*.sif
+**.sif
+**.tar 
+**cache 
+**tmp
