@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #SBATCH -J build_apptainer_image
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=John.Doe@mail.ca
-#SBATCH --partition=all
+#SBATCH --mail-user=Joan.Kant@uhn.ca
+#SBATCH --partition=himem
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=16G
+#SBATCH --mem=20G
 #SBATCH --time=02:00:00
 #SBATCH --output=slurm_out/%x_%A.out
 #SBATCH --error=slurm_out/%x_%A.out
@@ -17,7 +17,8 @@
 # TODO change your email in the SBATCH above
 
 # TODO fill out
-image_name="giotto"
+image_name="seurat_v5"
+image_dir="/cluster/projects/gaitigroup/ref/singularity_images/seurat/v5/"
 
 module load apptainer 
 
@@ -26,7 +27,7 @@ export APPTAINER_TMPDIR=$PWD/tmp
 mkdir -p $APPTAINER_CACHEDIR
 mkdir -p $APPTAINER_TMPDIR
 
-apptainer build ${image_name}.sif docker-archive:${image_name}.tar
+apptainer build ${image_dir}/${image_name}_dev.sif docker-archive:${image_dir}/${image_name}.tar
 
 # Clean up
 rm -rf $APPTAINER_CACHEDIR
