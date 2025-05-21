@@ -17,13 +17,13 @@
 # TODO change your email in the SBATCH above
 
 # TODO fill out
-image_name="seurat_v5"
-image_dir="/cluster/projects/gaitigroup/ref/singularity_images/seurat/v5/"
+image_name="cytotrace2"
+image_dir="/cluster/projects/gaitigroup/ref/singularity_images/cytotrace2"
 
 module load apptainer 
 
-export APPTAINER_CACHEDIR=$PWD/cache
-export APPTAINER_TMPDIR=$PWD/tmp
+export APPTAINER_CACHEDIR=$PWD/cache_${image_name}
+export APPTAINER_TMPDIR=$PWD/tmp_${image_name}
 mkdir -p $APPTAINER_CACHEDIR
 mkdir -p $APPTAINER_TMPDIR
 
