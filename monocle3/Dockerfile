@@ -19,5 +19,5 @@ RUN micromamba install -y -n base -f /tmp/env.yaml && \
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 
 # Run the R script
-RUN R -e "pak::pkg_install('cole-trapnell-lab/monocle3')" && \
+RUN R -e "pak::pkg_install('cole-trapnell-lab/monocle3', upgrade = FALSE)" && \
     rm /tmp/env.yaml

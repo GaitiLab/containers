@@ -1,1 +1,5 @@
-*.sif
+**.sif
+**.tar 
+**cache 
+**tmp
+slurm_out
