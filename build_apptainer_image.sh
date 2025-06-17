@@ -17,8 +17,9 @@
 # TODO change your email in the SBATCH above
 
 # TODO fill out
-image_name="cytotrace2"
-image_dir="/cluster/projects/gaitigroup/ref/singularity_images/cytotrace2"
+image_name="opt"
+image_src="/cluster/projects/gaitigroup/Users/Joan/containers/opt/${image_name}.tar"
+image_dest="/cluster/projects/gaitigroup/ref/singularity_images/${image_name}_dev.sif"
 
 module load apptainer 
 
@@ -27,7 +28,7 @@ export APPTAINER_TMPDIR=$PWD/tmp_${image_name}
 mkdir -p $APPTAINER_CACHEDIR
 mkdir -p $APPTAINER_TMPDIR
 
-apptainer build ${image_dir}/${image_name}_dev.sif docker-archive:${image_dir}/${image_name}.tar
+apptainer build ${image_dest} docker-archive:${image_src}
 
 # Clean up
 rm -rf $APPTAINER_CACHEDIR
