@@ -1,0 +1,30 @@
+# Ignore macOS metadata files recursively
+**/._*
+**/.DS_Store
+
+# Ignore Git metadata
+.git
+.gitignore
+
+# Ignore node_modules (if applicable)
+node_modules
+
+# Ignore logs and temp files
+*.log
+tmp/
+temp/
+
+# Ignore build output folders
+dist/
+build/
+
+# Ignore IDE/editor config files
+.vscode/
+.idea/
+
+**/._*
+._*
+
+# Project specific
+# Don't add data due to large size
+off-target-probe-tracker/data
