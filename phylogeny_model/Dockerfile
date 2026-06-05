@@ -1,0 +1,25 @@
+FROM mambaorg/micromamba:ubuntu22.04 AS base
+
+FROM base AS build
+
+USER root
+
+# Update, install required packages, and clean up in one RUN statement
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends cmake libharfbuzz-dev libfribidi-dev libudunits2-dev libcairo2-dev libhdf5-dev libxml2-dev libfl-dev liblzma-dev zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+USER $MAMBA_USER
+
+# Copy the necessary files
+COPY --chown=$MAMBA_USER:$MAMBA_USER env.yaml /tmp/env.yaml
+
+# Install dependencies using micromamba and clean up
+RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
+
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+
+# Run the R script
+RUN rm /tmp/env.yaml
+
