@@ -71,4 +71,6 @@ apptainer build --force --arch amd64 test.sif test.def
 apptainer-vm
 # 2. Run container
 apptainer run test.sif
+
+# apptainer run --cleanenv --no-home base.sif
 ```
