@@ -1,4 +1,3 @@
-
 # containers
 
 Docker & Singularity/Apptainer images for convenience. These containers can also be found on:
@@ -94,62 +93,3 @@ apptainer build <image>.sif docker://<docker-hub-image>
 ```sh
 apptainer run <image>.sif <command>
 ```
-
-
-
-## Alternative for MacOS
-
-Follow steps below: 
-
-```Shell
-# 1. Start system
-container system start
-
-# 2. Enter apptainer directory with Dockerfile
-cd apptainer
-container build -t local/apptainer-rocky:latest .
-
-# 3. Create the machine
-container machine create local/apptainer-rocky:latest --name apptainer
-
-# 4. Test machine
-container machine run -n apptainer -- apptainer --version
-container machine run -n apptainer -- apptainer pull docker://rockylinux/rockylinux:9
-container machine run -n apptainer -- apptainer exec rockylinux_9.sif cat /etc/os-release
-
-# 5. Add wrapper functions
-cat > ~/.apptainer-machine.zsh << 'EOF'
-APPTAINER_MACHINE="${APPTAINER_MACHINE:-apptainer}"
-
-apptainer() {
-  local APPTAINER_BINDPATH="$APPTAINER_BINDPATH"
-  if [ -n "$APPTAINER_BINDPATH" ]; then
-    APPTAINER_BINDPATH="$APPTAINER_BINDPATH,"
-  fi
-  APPTAINER_BINDPATH="$APPTAINER_BINDPATH$HOME"
-  command container machine run -n "$APPTAINER_MACHINE" -e "APPTAINER_BINDPATH=$APPTAINER_BINDPATH" -- apptainer "$@"
-}
-
-singularity() {
-  apptainer "$@"
-}
-EOF
-
-# Add to .zshrc
-echo '[ -f ~/.apptainer-machine.zsh ] && . ~/.apptainer-machine.zsh' >> ~/.zshrc
-
-# Reload .zshrc
-source ~/.zshrc
-
-# 6. Make exectuable
-mkdir -p ~/.local/bin
-
-cat > ~/.local/bin/run-singularity << 'SHIM'
-#!/bin/sh
-. ~/.apptainer-machine.zsh
-apptainer run "$@"
-SHIM
-chmod +x ~/.local/bin/run-singularity
-```
-
-Taken from: [apptainer.org/docs/admin/main/installation.html#setup](https://apptainer.org/docs/admin/main/installation.html#setup)

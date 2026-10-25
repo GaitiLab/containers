@@ -1,0 +1,12 @@
+Bootstrap: docker
+From: ghcr.io/r-lib/rig/ubuntu-22.04-release
+
+%post
+rig add 4.4.3
+rig default 4.4.3
+
+%environment
+export PATH=/usr/local/bin:$PATH
+
+%runscript
+    exec bash -i
