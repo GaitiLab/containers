@@ -1,1 +1,1 @@
-apptainer build --force --arch amd64 base.sif base.def
+apptainer build --force --arch amd64 --ignore-fakeroot-command base.sif base.def

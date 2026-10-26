@@ -62,8 +62,24 @@ chmod +x ~/.local/bin/run-singularity
 
 ## Usage
 
+### Test Installation
+
+```Shell
+# For testing installation 
+# 1. pull a container with different arch
+apptainer pull --arch am64 docker://ghcr.io/r-lib/rig/ubuntu-22.04-release
+# 2. Use container (interactive)
+# a. Open VM
+apptainer-vm
+# b. Run container
+apptainer run ubuntu-22.04-release.sif
+```
+
+### General use case
+
 ```Shell
 # Building a container
+# --arch amd64 needed for H4H (HPC)
 apptainer build --force --arch amd64 test.sif test.def
 
 # Use container (interactive)
@@ -72,5 +88,5 @@ apptainer-vm
 # 2. Run container
 apptainer run test.sif
 
-# apptainer run --cleanenv --no-home base.sif
+# apptainer run --cleanenv base.sif
 ```
