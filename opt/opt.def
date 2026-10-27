@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: mambaorg/micromamba:ubuntu22.04
+
+%files
+off-target-probe-tracker-build /off-target-probe-tracker
+
+%post
+
+micromamba create -y --name opt pip python=3.9
+micromamba install -y -n opt \
+    -c bioconda \
+    -c conda-forge \
+    gffread bowtie2 samtools mummer4
+    
+cd /off-target-probe-tracker
+micromamba run -n opt pip install .
+
+rm -rf /off-target-probe-tracker
+
+micromamba clean --all --yes
+
+%environment
+    export MAMBA_ROOT_PREFIX=/opt/conda
+    export PATH=/opt/conda/envs/opt/bin:$PATH
+
+%runscript
+    export PATH=/opt/conda/envs/opt/bin:$PATH
+    exec bash -i
