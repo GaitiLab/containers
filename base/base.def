@@ -13,7 +13,7 @@ libx11-dev libgdal-dev gdal-bin libgeos-dev libproj-dev git xz-utils pari-gp lib
 make libfontconfig1-dev libfreetype6-dev perl libpng-dev libgmp3-dev zlib1g-dev libhdf5-dev \
 libnetcdf-dev libglpk-dev libxml2-dev jags libjpeg-dev libsqlite3-dev libmagick++-dev \
 gsfonts libzstd-dev poppler-data libpoppler-cpp-dev libtiff-dev libgsl0-dev libbz2-dev \
-liblzma-dev default-jdk libicu-dev libfribidi-dev libharfbuzz-dev libudunits2-dev python3-pip pipx
+liblzma-dev default-jdk libicu-dev libfribidi-dev libharfbuzz-dev libudunits2-dev python3-pip pipx curl fakeroot
 
 # Install R-version
 rig add 4.4.3
@@ -32,7 +32,8 @@ pipx install radian
 # For terminal
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
-# Clean-up
-rm -rf /tmp
+# Full clean-up
+pip cache purge || true
+
 %runscript
     exec bash -i

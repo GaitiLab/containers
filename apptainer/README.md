@@ -1,5 +1,19 @@
 # Running apptainer on MacOS with Apple Silicon (M-chip)
 
+Ref: [apptainer.org/docs/admin/main/installation.html#apple-container](https://apptainer.org/docs/admin/main/installation.html#apple-container)
+
+## Download Apple container
+
+**Option 1: Homebrew**
+
+```Shell
+brew install container
+```
+
+**Option 2: GitHub**
+
+* Download and install the `.pkg`from the [container releases page](https://github.com/apple/container/releases), then start the system:
+
 ## Create Apple container
 
 ```Shell
@@ -67,20 +81,23 @@ chmod +x ~/.local/bin/run-singularity
 ```Shell
 # For testing installation 
 # 1. pull a container with different arch
-apptainer pull --arch am64 docker://ghcr.io/r-lib/rig/ubuntu-22.04-release
+apptainer pull --arch amd64 docker://ghcr.io/r-lib/rig/ubuntu-22.04-release
 # 2. Use container (interactive)
 # a. Open VM
 apptainer-vm
 # b. Run container
-apptainer run ubuntu-22.04-release.sif
+apptainer run ubuntu-22.04-release_latest.sif
 ```
 
 ### General use case
+
+> NOTE if you download `test.def`from GitHub (through your browser), then update the extension to `.def`because it may be automatically downloaded as .`txt.`
 
 ```Shell
 # Building a container
 # --arch amd64 needed for H4H (HPC)
 apptainer build --force --arch amd64 test.sif test.def
+# you may need to add: --ignore-fakeroot-command 
 
 # Use container (interactive)
 # 1. Open VM

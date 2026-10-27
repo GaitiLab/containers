@@ -4,6 +4,7 @@ From: ghcr.io/r-lib/rig/ubuntu-22.04-release
 %post
 rig add 4.4.3
 rig default 4.4.3
+apt-get update && apt-get install -y --no-install-recommends fakeroot
 
 %environment
 export PATH=/usr/local/bin:$PATH
