@@ -4,7 +4,8 @@
 **tmp
 slurm_out
 
-off-target-probe-tracker
 
 tmp**
 opt/xenium_5k_panel
+
+*.DS_Store
